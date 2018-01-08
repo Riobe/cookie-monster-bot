@@ -35,10 +35,10 @@ client.on('message', message => {
       cookies.bakeCookies(message);
     } else if (content.startsWith('!cookiesof')) {
       cookies.listCookies(message);
-    } else if (content.startsWith('!cookies')) {
-      cookies.listOwnCookies(message);
     } else if (content.startsWith('!cookiehelp')) {
       cookies.cookieHelp(message);
+    } else if (content.startsWith('!cookies')) {
+      cookies.listOwnCookies(message);
     }
   } else if (content.startsWith(cookies.A_COOKIE)) {
     cookies.giveCookies(message);
