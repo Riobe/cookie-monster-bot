@@ -1,6 +1,6 @@
-const fs = require('fs'),
-      inspect = require('util').inspect,
-      Discord = require('discord.js');
+'use strict';
+
+const Discord = require('discord.js');
 
 const cookies = require('./lib/cookies');
 
@@ -18,7 +18,7 @@ client.on('error', err => {
 });
 
 process.on('SIGINT', function() {
-  console.log("Caught interrupt signal");
+  console.log('Caught interrupt signal');
   client.channels
     .find('name', 'general')
     .send('COOKIE COOKIE COOKIE START WITH C!')
@@ -33,10 +33,10 @@ client.on('message', message => {
   if (content[0] === '!') {
     if (content.startsWith('!bake')) {
       cookies.bakeCookies(message);
-    } else if (content.startsWith('!cookies')) {
-      cookies.listOwnCookies(message);
     } else if (content.startsWith('!cookiesof')) {
       cookies.listCookies(message);
+    } else if (content.startsWith('!cookies')) {
+      cookies.listOwnCookies(message);
     } else if (content.startsWith('!cookiehelp')) {
       cookies.cookieHelp(message);
     }
