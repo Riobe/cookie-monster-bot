@@ -38,7 +38,6 @@ process.on('SIGINT', function() {
     .find('name', 'general')
     .send('COOKIE COOKIE COOKIE START WITH C!')
     .then(() => process.exit());
-  //process.exit();
 });
 
 client.on('message', message => {
