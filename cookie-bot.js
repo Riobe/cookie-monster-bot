@@ -13,7 +13,7 @@ const COMMAND_REGEX = /^\s*!(\w+)\s*(.*)/;
 // match[1]: A potential negative sign if the user was trying to steal cookies.
 // match[2]: The number of cookies, if specified. Assume 1 if not.
 // match[3]: The mentions to give these cookies to.
-const GIFT_REGEX = /🍪\s*(?:[*xX]\s*(\-?)(\d+))?((?:\s*<!?@\d+>)+)[^🍪]*/g;
+const GIFT_REGEX = /🍪\s*(?:[*xX]\s*(\-?)(\d+))?(?:(?:\s*<@!?(\d+)>)+)[^🍪]*/g;
 
 // 1 capture group:
 // match[1]: The ID of the user mentioned.
