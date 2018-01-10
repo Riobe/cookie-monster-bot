@@ -23,23 +23,6 @@ const client = new Discord.Client();
 const token = process.env.BOT_TOKEN;
 client.login(token);
 
-client.on('ready', () => {
-  console.log('Running.');
-  client.channels.find('name', 'general').send('Hello! Me here in local bakery to talk about COOKIES!!!');
-});
-client.on('error', err => {
-  console.errror(err);
-  client.channels.find('name', 'general').send('COOKIE COOKIE COOKIE START WITH C!');
-});
-
-process.on('SIGINT', function() {
-  console.log('Caught interrupt signal');
-  client.channels
-    .find('name', 'general')
-    .send('COOKIE COOKIE COOKIE START WITH C!')
-    .then(() => process.exit());
-});
-
 client.on('message', message => {
   const content = message.content.trim();
 
