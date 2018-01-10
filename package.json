@@ -4,7 +4,8 @@
   "description": "COOKIE MONSTER LIKE HELP YOU MAKE COOKIES IN DISCORD!",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^11.2.1"
+    "discord.js": "^11.2.1",
+    "moment": "^2.20.1"
   },
   "devDependencies": {
     "nodemon": "^1.14.10"

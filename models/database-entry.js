@@ -1,6 +1,7 @@
 'use strict';
 
-const User = require('./user');
+const moment = require('moment'),
+      User = require('./user');
 
 function DatabaseEntry(data) {
   this.user = data.user;
@@ -46,15 +47,17 @@ DatabaseEntry.prototype.giveCookiesTo = function(entry, amount) {
 };
 
 DatabaseEntry.prototype.bakeCookies = function() {
-  const today = new Date().toLocaleDateString('en-US');
+  const now = moment();
 
-  if (this.lastBaked && today === this.lastBaked) {
-    return ' your oven is too hot! EAT COOKIES INSTEAD UNTIL TOMORROW! Mmffmfffmfmff Mmmmmmmmm....';
+  if (this.lastBaked && moment(this.lastBaked).isSame(now, 'day')) {
+    const midnight = moment().endOf('day');
+    const duration = moment.duration(now.diff(midnight)).humanize();
+    return ` you can bake again in ${duration}! EAT COOKIES INSTEAD UNTIL TOMORROW! Mmffmfffmfmff Mmmmmmmmm....`;
   }
 
   this.cookies += 5;
   this.baked += 5;
-  this.lastBaked = today;
+  this.lastBaked = now.valueOf();
 };
 
 module.exports = DatabaseEntry;
