@@ -15,12 +15,6 @@ function User(newUser) {
   this.id = newUser.id;
   this.username = newUser.username;
   this.mention = `<@${newUser.id}>`;
-
-  console.log('I exist now!', JSON.stringify({
-    id: newUser.id,
-    username: newUser.username,
-    mention: `<@${newUser.id}>`
-  }, null, 2));
 }
 
 module.exports = User;
