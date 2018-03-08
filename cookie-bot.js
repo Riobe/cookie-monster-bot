@@ -13,7 +13,7 @@ winston.configure({
       level: 'silly'
     }),
     new winston.transports.File({
-      name: 'log-file',
+      name: 'main-log',
       filename: 'logs/cookie-bot.log',
       level: 'debug',
       handleExceptions: true,
@@ -23,6 +23,18 @@ winston.configure({
       tailable: true,
       maxFiles: 10,
       maxsize: 500000
+    }),
+    new winston.transports.File({
+      name: 'error-log',
+      filename: 'logs/error.log',
+      level: 'error',
+      handleExceptions: true,
+      humanReadableUnhandledException: true,
+      json: false,
+      prettyPrint: true,
+      tailable: true,
+      maxFiles: 10,
+      maxsize: 5000000
     })
   ]
 });
