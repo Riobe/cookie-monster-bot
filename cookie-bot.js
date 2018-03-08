@@ -1,8 +1,31 @@
 'use strict';
 
-const inspect = require('util').inspect;
 const Discord = require('discord.js');
 const cookies = require('./lib/cookies');
+const winston = require('winston');
+
+winston.configure({
+  level: 'silly',
+  transports: [
+    new winston.transports.Console({
+      colorize: true,
+      timestamp: true,
+      level: 'silly'
+    }),
+    new winston.transports.File({
+      name: 'log-file',
+      filename: 'logs/cookie-bot.log',
+      level: 'debug',
+      handleExceptions: true,
+      humanReadableUnhandledException: true,
+      json: false,
+      prettyPrint: true,
+      tailable: true,
+      maxFiles: 10,
+      maxsize: 500000
+    })
+  ]
+});
 
 // 2 capture groups:
 // match[1]: The command itself.
@@ -25,10 +48,11 @@ const token = process.env.BOT_TOKEN;
 client.login(token);
 
 client.on('ready', () => {
-  console.log('Running.');
+  winston.info('Client is running.');
 });
+
 client.on('error', err => {
-  console.error(err);
+  winston.error(err);
 });
 
 client.on('message', message => {
@@ -37,7 +61,7 @@ client.on('message', message => {
   let match;
   if (match = COMMAND_REGEX.exec(content)) {
     const command = match[1];
-    console.log(`"!${command}" for (${message.author.id}|${message.author.username})`);
+    winston.info(`"!${command}" for (${message.author.id}|${message.author.username})`);
     switch (command) {
       case 'bake':
         cookies.bakeCookies(message);
@@ -80,7 +104,7 @@ client.on('message', message => {
   }
 
   if (gifts.length) {
-    console.log('Giving cookie gifts: ', inspect(gifts, { depth: 3 }));
+    winston.info('Giving cookie gifts.', { gifts: gifts});
     return cookies.giveCookies(message, gifts);
   }
 });
