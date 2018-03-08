@@ -28,7 +28,7 @@ client.on('ready', () => {
   console.log('Running.');
 });
 client.on('error', err => {
-  console.errror(err);
+  console.error(err);
 });
 
 client.on('message', message => {
