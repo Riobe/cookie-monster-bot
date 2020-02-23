@@ -89,6 +89,9 @@ client.on('message', message => {
       case 'cookieshelp':
         cookies.cookieHelp(message);
         return;
+      case 'eatcookie':
+        cookies.eatCookie(message);
+        return;
       case 'test':
         message.reply('🍪* 2 <@!129631547077689344> <@270804633000083456>');
         return;
