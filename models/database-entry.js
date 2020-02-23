@@ -62,7 +62,6 @@ DatabaseEntry.prototype.bakeCookies = function() {
 
 DatabaseEntry.prototype.eatCookie = function() {
   if(user.cookies.length < 1) {
-    winston.info(`${message.author} tried to eat a cookie, but they had none (length=0).`);
     return message.reply('YOU HAVE NO COOKIES!! WHY YOU NO HAVE COOKIES?? CANNOT EAT COOKIES!!  YOU SHOULD BE SAD.');
   }
 
