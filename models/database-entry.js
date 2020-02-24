@@ -6,6 +6,7 @@ const moment = require('moment'),
 function DatabaseEntry(data) {
   this.user = data.user;
   this.cookies = data.cookies || 0;
+  this.cookiesEaten = data.cookiesEaten || 0;
   this.baked = data.baked || 0;
   this.lastBaked = data.lastBaked || undefined;
   this.cookiesFrom = data.cookiesFrom || {};
@@ -58,6 +59,15 @@ DatabaseEntry.prototype.bakeCookies = function() {
   this.cookies += 5;
   this.baked += 5;
   this.lastBaked = now.valueOf();
+};
+
+DatabaseEntry.prototype.eatCookie = function() {
+  if(user.cookies.length < 1) {
+    return message.reply('YOU HAVE NO COOKIES!! WHY YOU NO HAVE COOKIES?? CANNOT EAT COOKIES!!  YOU SHOULD BE SAD.');
+  }
+
+  this.cookiesEaten++;
+  this.cookies--;
 };
 
 module.exports = DatabaseEntry;
